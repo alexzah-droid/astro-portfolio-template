@@ -1,0 +1,19 @@
+---
+import { getExperience } from '../lib/content-parser';
+import ExperienceCard from './ExperienceCard.astro';
+
+const items = getExperience();
+---
+
+<div class="flex flex-col gap-4">
+  {
+    items.map((item) => (
+      <ExperienceCard
+        period={item.period}
+        company={item.company}
+        position={item.position}
+        description={item.description}
+      />
+    ))
+  }
+</div>

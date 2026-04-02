@@ -1,0 +1,21 @@
+---
+import { getCases } from '../lib/content-parser';
+import CaseCard from './CaseCard.astro';
+
+const cases = getCases();
+---
+
+<div class="flex flex-col gap-5">
+  {
+    cases.map((c) => (
+      <CaseCard
+        title={c.title}
+        client={c.client}
+        problem={c.problem}
+        actions={c.actions}
+        result={c.result}
+        metrics={c.metrics}
+      />
+    ))
+  }
+</div>

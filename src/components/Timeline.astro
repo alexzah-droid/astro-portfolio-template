@@ -1,0 +1,63 @@
+---
+import { getExperience } from '../lib/content-parser';
+
+const items = getExperience();
+---
+
+<div class="relative">
+  <!-- Vertical line -->
+  <div
+    class="absolute left-[7px] top-3 bottom-0 w-px"
+    style="background-color: var(--border);"
+  ></div>
+
+  {
+    items.map((item) => {
+      const bullets = item.description
+        .split('\n')
+        .map((l) => l.trim())
+        .filter(Boolean);
+
+      return (
+        <div class="relative pl-10 pb-12 fade-up last:pb-0">
+          <!-- Dot -->
+          <div
+            class="absolute left-0 top-[5px] h-4 w-4 rounded-full"
+            style="background-color: var(--accent); box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent-light);"
+          />
+
+          <!-- Period -->
+          <span
+            class="mb-1 block text-xs font-semibold uppercase tracking-widest"
+            style="color: var(--accent);"
+          >
+            {item.period}
+          </span>
+
+          <!-- Company -->
+          <p class="text-sm" style="color: var(--text-subtle);">
+            {item.company}
+          </p>
+
+          <!-- Position -->
+          <h3 class="mt-1 mb-3 text-base font-semibold" style="color: var(--text);">
+            {item.position}
+          </h3>
+
+          <!-- Description bullets -->
+          <ul class="space-y-1">
+            {bullets.map((bullet) => (
+              <li class="flex gap-2 text-sm" style="color: var(--text-muted);">
+                <span
+                  class="mt-[7px] h-1 w-1 shrink-0 rounded-full"
+                  style="background-color: var(--border);"
+                />
+                {bullet}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    })
+  }
+</div>

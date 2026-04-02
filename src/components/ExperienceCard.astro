@@ -1,0 +1,53 @@
+---
+interface Props {
+  period: string;
+  company: string;
+  position: string;
+  description: string;
+}
+
+const { period, company, position, description } = Astro.props;
+
+const bullets = description
+  .split('\n')
+  .map((l) => l.trim())
+  .filter(Boolean);
+---
+
+<article class="card fade-up p-6 sm:p-8">
+  <!-- Period badge -->
+  <span
+    class="mb-4 inline-block rounded-full px-3 py-1 text-xs font-semibold"
+    style="background-color: var(--accent-light); color: var(--accent);"
+  >
+    {period}
+  </span>
+
+  <!-- Company -->
+  <h3 class="mb-1 text-lg font-bold leading-snug" style="color: var(--text);">
+    {company}
+  </h3>
+
+  <!-- Position -->
+  <p class="mb-5 text-sm font-medium" style="color: var(--text-muted);">
+    {position}
+  </p>
+
+  <!-- Divider -->
+  <div class="mb-5 h-px" style="background-color: var(--border);"></div>
+
+  <!-- Description bullets -->
+  <ul class="space-y-2">
+    {
+      bullets.map((bullet) => (
+        <li class="flex gap-3 text-sm leading-relaxed" style="color: var(--text-muted);">
+          <span
+            class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full"
+            style="background-color: var(--accent);"
+          />
+          {bullet}
+        </li>
+      ))
+    }
+  </ul>
+</article>

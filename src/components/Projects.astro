@@ -1,0 +1,20 @@
+---
+import { getProjects } from '../lib/content-parser';
+import ProjectCard from './ProjectCard.astro';
+
+const projects = getProjects();
+---
+
+<div class="grid gap-5 sm:grid-cols-2">
+  {
+    projects.map((project) => (
+      <ProjectCard
+        title={project.title}
+        description={project.description}
+        technologies={project.technologies}
+        year={project.year}
+        link={project.link}
+      />
+    ))
+  }
+</div>

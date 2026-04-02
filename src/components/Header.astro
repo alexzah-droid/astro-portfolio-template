@@ -1,0 +1,111 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { getInfo } from '../lib/content-parser';
+
+const info = getInfo();
+
+const navLinks = [
+  { href: '/#about', label: 'О себе' },
+  { href: '/#projects', label: 'Проекты' },
+  { href: '/#cases', label: 'Кейсы' },
+  { href: '/#experience', label: 'Опыт' },
+];
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 w-full transition-shadow"
+  style="background-color: var(--bg); border-bottom: 1px solid var(--border);"
+>
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
+    <!-- Logo / Name -->
+    <a
+      href="/"
+      class="text-sm font-semibold tracking-tight"
+      style="color: var(--text);"
+    >
+      {info.name.split(' ')[0]}
+      <span style="color: var(--accent);">{info.name.split(' ').slice(1).join(' ')}</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-6 md:flex">
+      {
+        navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class="text-sm font-medium transition-colors"
+            style="color: var(--text-muted);"
+            onmouseover="this.style.color='var(--accent)'"
+            onmouseout="this.style.color='var(--text-muted)'"
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <ThemeToggle />
+
+      <!-- Burger button (mobile) -->
+      <button
+        id="burger-btn"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        class="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg border md:hidden"
+        style="border-color: var(--border); color: var(--text-muted);"
+      >
+        <span class="burger-line block h-0.5 w-5 rounded transition-all" style="background-color: currentColor;"></span>
+        <span class="burger-line block h-0.5 w-5 rounded transition-all" style="background-color: currentColor;"></span>
+        <span class="burger-line block h-0.5 w-5 rounded transition-all" style="background-color: currentColor;"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t px-4 py-4 md:hidden"
+    style="border-color: var(--border); background-color: var(--bg);"
+  >
+    <nav class="flex flex-col gap-4">
+      {
+        navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class="mobile-nav-link text-sm font-medium"
+            style="color: var(--text-muted);"
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  function initBurger() {
+    const btn = document.getElementById('burger-btn');
+    const menu = document.getElementById('mobile-menu');
+    const links = document.querySelectorAll('.mobile-nav-link');
+
+    function toggleMenu(open: boolean) {
+      menu?.classList.toggle('hidden', !open);
+      btn?.setAttribute('aria-expanded', String(open));
+    }
+
+    btn?.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      toggleMenu(!isOpen);
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+  }
+
+  initBurger();
+  document.addEventListener('astro:after-swap', initBurger);
+</script>

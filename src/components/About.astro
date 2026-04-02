@@ -1,0 +1,23 @@
+---
+import { getAbout } from '../lib/content-parser';
+
+const about = getAbout();
+
+// Split full text into paragraphs (blank-line separated in YAML block scalar)
+const paragraphs = about.full
+  .split(/\n{2,}/)
+  .map((p) => p.replace(/\n/g, ' ').trim())
+  .filter(Boolean);
+---
+
+<div class="fade-up">
+  <div class="max-w-[65ch]">
+    {
+      paragraphs.map((para) => (
+        <p class="mb-5 text-base leading-relaxed last:mb-0 sm:text-[1.0625rem]" style="color: var(--text-muted);">
+          {para}
+        </p>
+      ))
+    }
+  </div>
+</div>

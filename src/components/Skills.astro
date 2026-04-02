@@ -1,0 +1,68 @@
+---
+import { getSkills } from '../lib/content-parser';
+
+const skills = getSkills();
+
+type LevelStyle = { bg: string; color: string };
+
+const levelStyles: Record<string, LevelStyle> = {
+  Эксперт:     { bg: 'var(--accent-light)', color: 'var(--accent)' },
+  Продвинутый: { bg: 'var(--level-adv-bg)', color: 'var(--level-adv-text)' },
+  Средний:     { bg: 'var(--surface)',       color: 'var(--text-muted)' },
+};
+
+function badgeStyle(level: string): LevelStyle {
+  return levelStyles[level] ?? levelStyles['Средний'];
+}
+---
+
+<div class="fade-up space-y-8">
+  <!-- Hard skills -->
+  <div>
+    <h4 class="mb-4 text-xs font-semibold uppercase tracking-widest" style="color: var(--text-subtle);">
+      Технические
+    </h4>
+    <div class="flex flex-wrap gap-2">
+      {
+        skills.hard.map((skill) => {
+          const s = badgeStyle(skill.level);
+          return (
+            <div
+              class="flex items-center gap-2 rounded-full px-3 py-1.5"
+              style={`background-color: ${s.bg};`}
+            >
+              <span class="text-sm font-medium" style={`color: ${s.color};`}>
+                {skill.name}
+              </span>
+              <span
+                class="rounded-full px-1.5 py-0.5 text-[10px] font-semibold"
+                style={`background-color: ${s.color}28; color: ${s.color};`}
+              >
+                {skill.level}
+              </span>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <!-- Soft skills -->
+  <div>
+    <h4 class="mb-4 text-xs font-semibold uppercase tracking-widest" style="color: var(--text-subtle);">
+      Гибкие навыки
+    </h4>
+    <div class="flex flex-wrap gap-2">
+      {
+        skills.soft.map((skill) => (
+          <span
+            class="rounded-full px-3 py-1.5 text-sm"
+            style="background-color: var(--surface); color: var(--text-muted);"
+          >
+            {skill}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</div>

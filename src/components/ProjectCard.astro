@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  technologies: string[];
+  year: string;
+  link: string;
+}
+
+const { title, description, technologies, year, link } = Astro.props;
+const hasLink = link && link.trim().length > 0;
+---
+
+<article class="card fade-up flex flex-col gap-4 p-6">
+  <!-- Header: title + external link -->
+  <div class="flex items-start justify-between gap-3">
+    <h3 class="text-base font-semibold leading-snug" style="color: var(--text);">
+      {title}
+    </h3>
+    {
+      hasLink && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Открыть проект: ${title}`}
+          class="mt-0.5 shrink-0 rounded p-1 transition-colors"
+          style="color: var(--text-subtle);"
+          onmouseover="this.style.color='var(--accent)'"
+          onmouseout="this.style.color='var(--text-subtle)'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          </svg>
+        </a>
+      )
+    }
+  </div>
+
+  <!-- Description -->
+  <p class="flex-1 text-sm leading-relaxed" style="color: var(--text-muted);">
+    {description}
+  </p>
+
+  <!-- Footer: tech badges + year -->
+  <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+    <div class="flex flex-wrap gap-1.5">
+      {
+        technologies.map((tech) => (
+          <span
+            class="rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
+            style="background-color: var(--accent);"
+          >
+            {tech}
+          </span>
+        ))
+      }
+    </div>
+    <span class="shrink-0 text-xs tabular-nums" style="color: var(--text-subtle);">
+      {year}
+    </span>
+  </div>
+</article>
