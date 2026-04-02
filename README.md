@@ -64,6 +64,7 @@
 git clone https://github.com/alexzah-droid/astro-portfolio-template.git
 cd astro-portfolio-template
 npm run setup
+npm install
 npm run dev
 ```
 
