@@ -19,7 +19,7 @@
 
 1. Нажми кнопку **Use this template** → **Create a new repository**
 2. Отредактируй `content.md` прямо в браузере — вставь свои данные
-3. Замени `src/assets/images/profile.jpg` своей фотографией и `public/cv.pdf` своим резюме
+3. Замени `src/assets/images/profile.jpg` своей фотографией и `public/cv.pdf` своим резюме (загрузи файлы через GitHub и сохрани изменения — кнопка «Commit changes»)
 4. Задеплой сайт — кнопкой ниже
 
 Всё. Больше ничего устанавливать не нужно.
