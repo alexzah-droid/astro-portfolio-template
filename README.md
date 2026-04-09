@@ -20,7 +20,7 @@
 1. Нажми кнопку **Use this template** → **Create a new repository**
 2. Отредактируй `content.md` прямо в браузере — вставь свои данные
 3. Замени `src/assets/images/profile.jpg` своей фотографией и `public/cv.pdf` своим резюме (загрузи файлы через GitHub и сохрани изменения — кнопка «Commit changes»)
-4. Задеплой сайт — кнопкой ниже
+4. Задеплой сайт — выбери удобный способ в разделе «Публикация сайта» ниже
 
 Всё. Больше ничего устанавливать не нужно.
 
@@ -30,17 +30,34 @@
 
 ## Публикация сайта
 
-Самый простой способ — через Netlify или Vercel. Оба сервиса бесплатны.
-Потребуется регистрация — можно войти через GitHub аккаунт в один клик.
+Все три варианта бесплатны и поддерживают автодеплой — каждый коммит в репозиторий автоматически обновляет сайт.
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alexzah-droid/astro-portfolio-template)
+### Вариант 1 — Netlify
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alexzah-droid/astro-portfolio-template)
+Нужна регистрация на netlify.com (вход через GitHub).
 
-Нажми кнопку → войди через GitHub → сайт будет готов через 2 минуты.
-После этого каждое изменение в `content.md` будет автоматически обновлять твой сайт.
+1. netlify.com → **Add new site** → **Import an existing project**
+2. Выбери свой репозиторий
+3. Build command: `npm run build`, Publish directory: `dist`
+4. Нажми **Deploy** — сайт будет доступен на `имя.netlify.app`
 
-> **Как работают кнопки деплоя:** после первого сохранения изменений в `content.md` GitHub автоматически обновит ссылки в кнопках так, чтобы они указывали на твой репозиторий.
+### Вариант 2 — Vercel
+
+Нужна регистрация на vercel.com (вход через GitHub).
+
+1. vercel.com → **New Project** → выбери свой репозиторий
+2. Настройки определяются автоматически — просто нажми **Deploy**
+3. Сайт будет доступен на `имя.vercel.app`
+
+### Вариант 3 — GitHub Pages
+
+Регистрация не нужна — используется твой GitHub аккаунт. Рекомендуется с кастомным доменом.
+
+1. В репозитории перейди в **Settings → Pages**
+2. В разделе Source выбери **GitHub Actions**
+3. Опционально: в разделе Custom domain введи свой домен
+4. Перейди во вкладку **Actions → Deploy to GitHub Pages** → нажми **Run workflow**
+5. После первого деплоя сайт будет обновляться автоматически при каждом коммите
 
 ---
 
