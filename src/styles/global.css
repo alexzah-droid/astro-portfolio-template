@@ -41,22 +41,22 @@
   --transition-theme: 0.2s ease;
 }
 
-/* Hygge — вечерняя комната со свечами */
+/* Hygge — тихий вечер в лесу */
 [data-theme="hygge"] {
-  --bg: #1c1714;
-  --bg-secondary: #272019;
-  --surface: #302820;
-  --border: #3d3229;
-  --text: #e8ddd0;
-  --text-muted: #a89585;
-  --text-subtle: #7a6658;
-  --accent: #e0976b;
-  --accent-hover: #c8804f;
-  --accent-light: #3d2a1a;
-  --level-adv-bg: #3d2a1a;
-  --level-adv-text: #e0976b;
+  --bg: #111a13;
+  --bg-secondary: #192219;
+  --surface: #1f2c20;
+  --border: #2a3d2b;
+  --text: #e6e8d0;
+  --text-muted: #9aaa78;
+  --text-subtle: #627550;
+  --accent: #d4c26a;
+  --accent-hover: #bfaa4e;
+  --accent-light: #2a3a1a;
+  --level-adv-bg: #1a2d1c;
+  --level-adv-text: #d4c26a;
   --card-radius: 16px;
-  --card-shadow-hover: 0 6px 28px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 6px 28px rgba(0, 0, 0, 0.35);
   --transition-theme: 0.3s ease;
 }
 
